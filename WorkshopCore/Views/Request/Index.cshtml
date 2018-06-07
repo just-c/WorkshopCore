@@ -1,0 +1,38 @@
+﻿@model WorkshopCore.Models.Request
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Request</h2>
+
+@using (Html.BeginForm("Create", "Request", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.Label("First Name")
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Last Name")
+        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.Label("Email")
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div class="form-group">
+        @Html.Label("Comments")
+        @Html.TextAreaFor(model => model.Comment, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Comment)
+    </div>
+    <div class="form-group">
+        @Html.Label("Attach Files")
+        @Html.TextBoxFor(model => model.FilePath, new { @class = "form-control", @type = "file" })
+    </div>
+
+    <button class="btn btn-success">Submit Request</button>
+}
+

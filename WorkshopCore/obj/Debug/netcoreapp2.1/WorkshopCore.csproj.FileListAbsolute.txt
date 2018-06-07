@@ -30,3 +30,4 @@ C:\Users\wjust\Documents\projects\WorkshopCore\WorkshopCore\obj\Debug\netcoreapp
 C:\Users\wjust\Documents\projects\WorkshopCore\WorkshopCore\obj\Debug\netcoreapp2.1\WorkshopCore.dll
 C:\Users\wjust\Documents\projects\WorkshopCore\WorkshopCore\obj\Debug\netcoreapp2.1\WorkshopCore.pdb
 C:\Users\wjust\Documents\projects\WorkshopCore\WorkshopCore\obj\Debug\netcoreapp2.1\WorkshopCore.csproj.CopyComplete
+C:\Users\wjust\Documents\projects\WorkshopCore\WorkshopCore\obj\Debug\netcoreapp2.1\Razor\Views\Request\Index.g.cshtml.cs
