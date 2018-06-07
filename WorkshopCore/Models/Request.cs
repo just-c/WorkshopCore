@@ -9,15 +9,23 @@ namespace WorkshopCore.Models
 {
     public class Request
     {
-
         [Key]
         [Column(Order = 1)]
-        public Guid request_id { get; set; }
+        public Guid Id { get; set; }
 
         [StringLength(64)]
-        public string first_name;
+        public string FirstName { get; set; }
 
         [StringLength(64)]
-        public string last_name;
+        public string LastName { get; set; }
+
+        [StringLength(128)]
+        public string Email { get; set; }
+
+        [StringLength(2048)]
+        public string Comment { get; set; }
+
+        [StringLength(32)]
+        public string FilePath { get; set; }
     }
 }

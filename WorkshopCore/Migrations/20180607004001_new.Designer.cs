@@ -10,8 +10,8 @@ using WorkshopCore.Models;
 namespace WorkshopCore.Migrations
 {
     [DbContext(typeof(WorkshopContext))]
-    [Migration("20180604234006_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20180607004001_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,10 +23,25 @@ namespace WorkshopCore.Migrations
 
             modelBuilder.Entity("WorkshopCore.Models.Request", b =>
                 {
-                    b.Property<Guid>("request_id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.HasKey("request_id");
+                    b.Property<string>("Comment")
+                        .HasMaxLength(2048);
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("FilePath")
+                        .HasMaxLength(32);
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(64);
+
+                    b.HasKey("Id");
 
                     b.ToTable("Request");
                 });

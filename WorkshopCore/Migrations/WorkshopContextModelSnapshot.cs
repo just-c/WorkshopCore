@@ -21,10 +21,25 @@ namespace WorkshopCore.Migrations
 
             modelBuilder.Entity("WorkshopCore.Models.Request", b =>
                 {
-                    b.Property<Guid>("request_id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.HasKey("request_id");
+                    b.Property<string>("Comment")
+                        .HasMaxLength(2048);
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("FilePath")
+                        .HasMaxLength(32);
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(64);
+
+                    b.HasKey("Id");
 
                     b.ToTable("Request");
                 });

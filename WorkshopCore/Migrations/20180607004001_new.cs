@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WorkshopCore.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,11 +11,16 @@ namespace WorkshopCore.Migrations
                 name: "Request",
                 columns: table => new
                 {
-                    request_id = table.Column<Guid>(nullable: false)
+                    Id = table.Column<Guid>(nullable: false),
+                    FirstName = table.Column<string>(maxLength: 64, nullable: true),
+                    LastName = table.Column<string>(maxLength: 64, nullable: true),
+                    Email = table.Column<string>(maxLength: 128, nullable: true),
+                    Comment = table.Column<string>(maxLength: 2048, nullable: true),
+                    FilePath = table.Column<string>(maxLength: 32, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Request", x => x.request_id);
+                    table.PrimaryKey("PK_Request", x => x.Id);
                 });
         }
 

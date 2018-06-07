@@ -37,6 +37,11 @@ namespace WorkshopCore.Services
         /// <returns></returns>
         public async Task<Request> Create(Request request)
         {
+            if(!Validate(request))
+            {
+                throw new Exception("Failed to create a request");
+            }
+
             _context.Add(request);
 
             await _context.SaveChangesAsync();
@@ -51,6 +56,16 @@ namespace WorkshopCore.Services
         /// <returns></returns>
         private bool Validate(Request request)
         {
+            if(request.Email == null)
+            {
+                _modelState.AddModelError("Email", "Email is Required");
+            }
+
+            if(request.Comment == null)
+            {
+                _modelState.AddModelError("Comment", "Comment is Required");
+            }
+
             //TODO Implement validate method
             return _modelState.IsValid;
         }

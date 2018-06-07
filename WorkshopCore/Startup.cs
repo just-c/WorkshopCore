@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using WorkshopCore.Models;
+using WorkshopCore.Services;
 
 namespace WorkshopCore
 {
@@ -37,6 +38,8 @@ namespace WorkshopCore
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<WorkshopContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("WorkshopContext")));
+
+            services.AddTransient<IRequestService, RequestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
