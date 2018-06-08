@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WorkshopCore.Models;
 using WorkshopCore.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace WorkshopCore.Controllers
 {
@@ -27,11 +28,11 @@ namespace WorkshopCore.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id, FirstName, LastName, Email, Comment, FilePath")] Request request)
+        public async Task<IActionResult> Create([Bind("Id, FirstName, LastName, Email, Comment")] Request request, IFormFile image)
         {
             try
             {
-                await _service.Create(request);
+                await _service.Create(request, image);
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception e)

@@ -40,6 +40,7 @@ namespace WorkshopCore
                     options.UseSqlServer(Configuration.GetConnectionString("WorkshopContext")));
 
             services.AddTransient<IRequestService, RequestService>();
+            services.AddTransient<IFileService, FileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

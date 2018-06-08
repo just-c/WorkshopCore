@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WorkshopCore.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace WorkshopCore.Services
 {
@@ -11,6 +12,7 @@ namespace WorkshopCore.Services
     {
         private WorkshopContext _context;
         private ModelStateDictionary _modelState;
+        private IFileService _fileService;
 
         public ModelStateDictionary ModelState
         {
@@ -20,9 +22,10 @@ namespace WorkshopCore.Services
             }
         }
 
-        public RequestService(WorkshopContext context)
+        public RequestService(WorkshopContext context, IFileService fileService)
         {
             _context = context;
+            _fileService = fileService;
         }
 
         public void AddModelState(ModelStateDictionary modelState)
@@ -35,13 +38,14 @@ namespace WorkshopCore.Services
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        public async Task<Request> Create(Request request)
+        public async Task<Request> Create(Request request, IFormFile file)
         {
             if(!Validate(request))
             {
                 throw new Exception("Failed to create a request");
             }
 
+            request.FilePath = _fileService.CreateFile(file);
             _context.Add(request);
 
             await _context.SaveChangesAsync();
@@ -66,7 +70,6 @@ namespace WorkshopCore.Services
                 _modelState.AddModelError("Comment", "Comment is Required");
             }
 
-            //TODO Implement validate method
             return _modelState.IsValid;
         }
     }

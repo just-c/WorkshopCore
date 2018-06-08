@@ -6,33 +6,35 @@
 
 <h2>Request</h2>
 
-@using (Html.BeginForm("Create", "Request", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
+<form asp-action="Create" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
-        @Html.Label("First Name")
-        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+        <label asp-for="FirstName" class="control-label">First Name</label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        @Html.Label("Last Name")
-        @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+        <label asp-for="LastName" class="control-label">Last Name</label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        @Html.Label("Email")
-        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Email)
+        <label asp-for="Email" class="control-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="form-group">
-        @Html.Label("Comments")
-        @Html.TextAreaFor(model => model.Comment, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Comment)
+        <label asp-for="Comment" class="control-label">Comment</label>
+        <textarea asp-for="Comment" class="form-control"></textarea>
+        <span asp-validation-for="Comment" class="text-danger"></span>
     </div>
     <div class="form-group">
-        @Html.Label("Attach Files")
-        @Html.TextBoxFor(model => model.FilePath, new { @class = "form-control", @type = "file" })
+        <label for="image" class="control-label">Attach Files</label>
+        <input type="file" class="form-control" name="image" id="image" />
+        <span asp-validation-for="FilePath" class="text-danger"></span>
     </div>
-
-    <button class="btn btn-success">Submit Request</button>
-}
+    <div class="form-group">
+        <input type="submit" value="Submit Request" class="btn btn-success" />
+    </div>
+</form>
 
