@@ -10,8 +10,8 @@ using WorkshopCore.Models;
 namespace WorkshopCore.Migrations
 {
     [DbContext(typeof(WorkshopContext))]
-    [Migration("20180607004001_new")]
-    partial class @new
+    [Migration("20180608192244_AddProductProductImage")]
+    partial class AddProductProductImage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,41 @@ namespace WorkshopCore.Migrations
                 .HasAnnotation("ProductVersion", "2.1.0-rtm-30799")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WorkshopCore.Models.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2048);
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("WorkshopCore.Models.ProductImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FilePath")
+                        .HasMaxLength(64);
+
+                    b.Property<Guid>("ProductId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImage");
+                });
 
             modelBuilder.Entity("WorkshopCore.Models.Request", b =>
                 {
@@ -33,7 +68,7 @@ namespace WorkshopCore.Migrations
                         .HasMaxLength(128);
 
                     b.Property<string>("FilePath")
-                        .HasMaxLength(32);
+                        .HasMaxLength(64);
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(64);
@@ -44,6 +79,14 @@ namespace WorkshopCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Request");
+                });
+
+            modelBuilder.Entity("WorkshopCore.Models.ProductImage", b =>
+                {
+                    b.HasOne("WorkshopCore.Models.Product", "Product")
+                        .WithMany("ProductImage")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

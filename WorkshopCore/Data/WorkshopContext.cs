@@ -14,6 +14,8 @@ namespace WorkshopCore.Models
 
         }
 
-        public DbSet<WorkshopCore.Models.Request> Request { get; set; }
+        public DbSet<Request> Request { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<ProductImage> ProductImage { get; set; }
     }
 }

@@ -19,6 +19,41 @@ namespace WorkshopCore.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("WorkshopCore.Models.Product", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(2048);
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<string>("Title")
+                        .HasMaxLength(128);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Product");
+                });
+
+            modelBuilder.Entity("WorkshopCore.Models.ProductImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("FilePath")
+                        .HasMaxLength(64);
+
+                    b.Property<Guid>("ProductId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImage");
+                });
+
             modelBuilder.Entity("WorkshopCore.Models.Request", b =>
                 {
                     b.Property<Guid>("Id")
@@ -42,6 +77,14 @@ namespace WorkshopCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Request");
+                });
+
+            modelBuilder.Entity("WorkshopCore.Models.ProductImage", b =>
+                {
+                    b.HasOne("WorkshopCore.Models.Product", "Product")
+                        .WithMany("ProductImage")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

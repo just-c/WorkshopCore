@@ -13,10 +13,12 @@ namespace WorkshopCore.Models
         [Column(Order = 1)]
         public Guid Id { get; set; }
 
-        [Key]
         public Guid ProductId { get; set; }
 
         [StringLength(64)]
         public string FilePath { get; set; }
+
+        [ForeignKey("ProductId")]
+        public Product Product { get; set; }
     }
 }
