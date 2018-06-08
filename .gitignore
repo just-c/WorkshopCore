@@ -1,2 +1,4 @@
 .vs*
-WorkshopCore/obj/Debug/*
+WorkshopCore/bin/*
+WorkshopCore/obj/*
+WorkshopCore/wwwroot/uploads/*

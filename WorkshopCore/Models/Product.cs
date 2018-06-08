@@ -7,25 +7,18 @@ using System.Threading.Tasks;
 
 namespace WorkshopCore.Models
 {
-    public class Request
+    public class Product
     {
         [Key]
         [Column(Order = 1)]
         public Guid Id { get; set; }
 
-        [StringLength(64)]
-        public string FirstName { get; set; }
-
-        [StringLength(64)]
-        public string LastName { get; set; }
-
         [StringLength(128)]
-        public string Email { get; set; }
+        public string Title { get; set; }
 
         [StringLength(2048)]
-        public string Comment { get; set; }
+        public string Description { get; set; }
 
-        [StringLength(64)]
-        public string FilePath { get; set; }
+        public decimal Price { get; set; }
     }
 }
